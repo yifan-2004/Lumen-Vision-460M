@@ -1,0 +1,19 @@
+# Local checkpoint folders
+/models/
+
+# Virtualenv
+.venv/
+
+# Cluster / local runtime
+logs/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+/build/
+
+# OS / editor
+.DS_Store
+*.swp

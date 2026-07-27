@@ -1,0 +1,15 @@
+logs/
+outputs/
+outputs_pkg/
+_hub_packages/
+__pycache__/
+*.pyc
+*.egg-info/
+.DS_Store
+.venv/
+venv/
+checkpoints/
+*.safetensors
+*.bin
+*.pt
+*.gguf

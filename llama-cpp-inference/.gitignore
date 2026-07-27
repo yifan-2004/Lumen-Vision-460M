@@ -1,0 +1,20 @@
+# Model weights (download separately)
+models/**/*.gguf
+models/**/*.gguf.tmp
+models/*.gguf
+models/*.gguf.tmp
+
+# Build artifacts
+llama.cpp-custom/build*/
+
+# Local runtime
+logs/
+*.log
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# OS / editor
+.DS_Store
+*.swp
