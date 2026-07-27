@@ -81,6 +81,14 @@ faster, lower-memory inference on constrained hardware, while retaining ~99% of 
 quality. A 4-bit (Q4_0) **GGUF** build of Flash is available for on-device
 [llama.cpp](llama-cpp-inference/) runtimes.
 
+<p align="center">
+  <img src="assets/ttft_across_devices.png" alt="Time-to-first-token across devices: Flash vs similar-size VLMs at 512x512" width="820"/>
+</p>
+
+<div align="center">
+  <i>Flash reaches the first token 10-25× faster than nanoVLM-460M and SmolVLM2-500M on real phones (512×512 input, lower is better).</i>
+</div>
+
 ---
 
 ## 📊 Benchmarks
