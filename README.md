@@ -18,7 +18,12 @@
   <a href="#-models">Models</a> •
   <a href="#-benchmarks">Benchmarks</a> •
   <a href="#-quick-start">Quick Start</a> •
-  <a href="#-model-details">Model Details</a>
+  <a href="#-model-details">Model Details</a> •
+  <a href="#-repository-structure">Repository Structure</a> •
+  <a href="#-usage-examples">Usage Examples</a> •
+  <a href="#-requirements-at-a-glance">Requirements</a> •
+  <a href="#-troubleshooting">Troubleshooting</a> •
+  <a href="#-license">License</a>
 </p>
 
 <p align="center">
