@@ -100,7 +100,7 @@ quality. A 4-bit (Q4_0) **GGUF** build of Flash is available for on-device
 
 We evaluated VisionPsy Nano on **17 public benchmarks** across the four capability areas above,
 all scored in a single [VLMEvalKit](https://github.com/open-compass/VLMEvalKit) harness so every
-model is measured identically (LLM-as-judge scoring uses Qwen3-27B).
+model is measured identically (LLM-as-judge scoring uses Qwen3.6-27B).
 
 **VisionPsy-Nano-460M compares favourably to every other ~0.5B VLM tested**, including
 LFM2.5-VL-450M, SmolVLM2-500M, and its own nanoVLM-460M-8k base, **on 16 of 17 benchmarks**, with
@@ -143,8 +143,8 @@ interchangeable runtimes. Pick the one that fits your goal:
 | 🪶 **llama.cpp** | On-device / edge, minimal deps, quantized GGUF | `GGUF` | [`llama-cpp-inference/`](llama-cpp-inference/) |
 
 ```bash
-git clone https://github.com/khurramHashmi/qvac-edge-vlm-inference.git
-cd qvac-edge-vlm-inference
+git clone https://github.com/tether-ai-research/qvac-visionpsy-nano.git
+cd qvac-visionpsy-nano
 ```
 
 <details open>
@@ -235,7 +235,7 @@ source .venv/bin/activate
 # One-shot inference (loads qvac/VisionPsy-Nano-460M from the Hub)
 bash scripts/infer.sh
 
-# Or start an OpenAI-compatible server on :8900 (model name "visionpsy")
+# Or start an OpenAI-compatible server on :8900 (model name "visionpsy-nano")
 bash scripts/serve.sh
 ```
 
@@ -254,9 +254,9 @@ Requires a CUDA GPU with `nvcc` to build the patched llama.cpp fork.
 ```bash
 cd llama-cpp-inference
 
-# 1. Place the GGUF weights (from the model release) into models/
-#    models/lm.gguf       (language model)
-#    models/mmproj.gguf   (vision projector)
+# 1. Place the GGUF weights (from the model release) into models/nano/
+#    models/nano/lm.gguf       (language model)
+#    models/nano/mmproj.gguf   (vision projector)
 
 # 2. Build (H100 by default; use CUDA_ARCH=80 for A100)
 ./scripts/build.sh
@@ -308,7 +308,7 @@ becomes 64 image tokens, and the prompt carries special position tokens
 ## 📁 Repository Structure
 
 ```
-qvac-edge-vlm-inference/
+qvac-visionpsy-nano/
 ├── README.md                       # This file
 ├── assets/                         # Figures used in this README
 │
@@ -318,9 +318,9 @@ qvac-edge-vlm-inference/
 │   ├── usage_inference.py          # One-shot inference (nano variant)
 │   ├── usage_inference_flash.py    # One-shot inference (flash variant)
 │   ├── runtime_profile.py          # Eager vs deploy (torch.compile + CUDA graphs)
-│   ├── modeling_visionpsy.py       # HF-compatible model definition
-│   ├── configuration_visionpsy.py  # HF config
-│   ├── processing_visionpsy.py     # HF processor (image + text)
+│   ├── modeling_visionpsynano.py      # HF-compatible model definition
+│   ├── configuration_visionpsynano.py # HF config
+│   ├── processing_visionpsynano.py    # HF processor (image + text)
 │   ├── hub_packaging.py            # Helpers to build a Hub-ready repo
 │   ├── models/                     # Reference model implementation
 │   │   ├── vision_transformer.py   # SigLIP2 vision encoder
@@ -341,10 +341,7 @@ qvac-edge-vlm-inference/
 │       ├── setup.sh                # Create venv with vLLM + plugin
 │       ├── infer.sh                # One-shot inference
 │       ├── serve.sh                # OpenAI-compatible server (:8900)
-│       ├── config.sh               # Model id / defaults
-│       ├── infer.slurm             # SLURM batch job
-│       ├── submit-infer.sh         # SLURM submit helper
-│       └── slurm.env.example       # SLURM env template
+│       └── config.sh               # Model id / defaults
 │
 └── llama-cpp-inference/            # 🪶 GGUF inference via patched llama.cpp
     ├── README.md                   # llama.cpp usage guide
@@ -354,12 +351,7 @@ qvac-edge-vlm-inference/
     └── scripts/
         ├── build.sh                # Build llama-mtmd-cli (CUDA)
         ├── infer.sh                # One-shot image captioning
-        ├── config.sh               # Model name / defaults
-        ├── build.slurm             # SLURM build job
-        ├── infer.slurm             # SLURM inference job
-        ├── submit-build.sh         # SLURM build submit helper
-        ├── submit-infer.sh         # SLURM infer submit helper
-        └── slurm.env.example       # SLURM env template
+        └── config.sh               # Model name / defaults
 ```
 
 ---
@@ -395,22 +387,12 @@ IMAGE=path/to/image.jpg PROMPT="Describe the scene." bash llama-cpp-inference/sc
 ### Query the vLLM server
 
 ```bash
-bash vllm-inference/scripts/serve.sh   # starts on :8900, served model name "visionpsy"
+bash vllm-inference/scripts/serve.sh   # starts on :8900, served model name "visionpsy-nano"
 ```
 
 The server exposes an OpenAI-compatible `/v1/chat/completions` endpoint. Remember it expects
 **pre-tiled** images and prompts that already carry the tile position tokens; see
 [`vllm-inference/infer.py`](vllm-inference/infer.py) for how to build a valid request.
-
-### Run on a SLURM cluster
-
-Both `vllm-inference/` and `llama-cpp-inference/` ship SLURM helpers:
-
-```bash
-cd vllm-inference
-cp scripts/slurm.env.example scripts/slurm.env   # set SLURM_PARTITION etc.
-./scripts/submit-infer.sh
-```
 
 ---
 
