@@ -286,7 +286,7 @@ with a SmolLM2 language backbone through a lightweight pixel-shuffle connector.
 | Language model | SmolLM2-360M-Instruct (32 layers, hidden dim 960, GQA with 15/5 heads) |
 | Modality projector | Pixel-shuffle (factor 4) → 64 image tokens per 512×512 tile |
 | Context length | up to 8192 tokens |
-| Precision | bfloat16 (Flash also ships as 4-bit Q4_0 GGUF) |
+| Precision | float32 (Flash also ships as 4-bit Q4_0 GGUF) |
 | Chat template | ChatML (`<\|im_start\|>` / `<\|im_end\|>`) |
 
 **Single-image by design.** The model is trained and optimized for one image per query
@@ -404,7 +404,11 @@ The server exposes an OpenAI-compatible `/v1/chat/completions` endpoint. Remembe
 | vLLM | ≥ 3.10 | CUDA GPU | `vllm==0.22.0` (default) + plugin |
 | llama.cpp | n/a | CUDA GPU + `nvcc` to build | patched llama.cpp fork |
 
-> For older CUDA drivers with vLLM, override the wheel: `VLLM_PACKAGE=vllm==0.22.0+cu129 ./scripts/setup.sh`.
+> For older CUDA drivers (CUDA 12.x) with vLLM, the default PyPI wheel targets a newer CUDA. Install the
+> `+cu129` wheel from [vLLM's GitHub releases](https://github.com/vllm-project/vllm/releases/tag/v0.22.0) instead:
+> `VLLM_PACKAGE=https://github.com/vllm-project/vllm/releases/download/v0.22.0/vllm-0.22.0+cu129-cp38-abi3-manylinux_2_28_x86_64.whl ./scripts/setup.sh`
+> and match PyTorch to the same CUDA build:
+> `pip install torch==2.11.0+cu129 torchvision==0.26.0+cu129 --extra-index-url https://download.pytorch.org/whl/cu129`
 
 ---
 

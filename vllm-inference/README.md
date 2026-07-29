@@ -2,8 +2,6 @@
 
 Run **VisionPsyNano** with [vLLM](https://github.com/vllm-project/vllm) through an
 out-of-tree model plugin ([`visionpsy_vllm/`](visionpsy_vllm/)).
-VisionPsyNano builds on the [nanoVLM](https://github.com/huggingface/nanoVLM)
-architecture.
 
 ---
 
