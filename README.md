@@ -78,6 +78,7 @@ The official model weights are released on the Hugging Face Hub:
 |-------|---------------|------|
 | 🏆 **VisionPsy-Nano-460M** | **Best quality**: the top ~0.5B VLM in its class | [huggingface.co/qvac/VisionPsy-Nano-460M](https://huggingface.co/qvac/VisionPsy-Nano-460M) |
 | ⚡ **VisionPsy-Nano-460M-Flash** | **Best latency**: 10-25× faster time-to-first-token on real phones, ~99% of the quality | [huggingface.co/qvac/VisionPsy-Nano-460M-Flash](https://huggingface.co/qvac/VisionPsy-Nano-460M-Flash) |
+| 🪶 **GGUF builds** (both models) | **On-device / llama.cpp**: fp32 down to 3-bit quantizations | [Nano-GGUFs](https://huggingface.co/qvac/VisionPsy-Nano-460M-GGUFs) · [Flash-GGUFs](https://huggingface.co/qvac/VisionPsy-Nano-460M-Flash-GGUFs) |
 
 Both are ~460M parameters, Apache 2.0 licensed, and built on the
 [nanoVLM](https://github.com/huggingface/nanoVLM) architecture. Flash uses more aggressive
@@ -254,7 +255,8 @@ Requires a CUDA GPU with `nvcc` to build the patched llama.cpp fork.
 ```bash
 cd llama-cpp-inference
 
-# 1. Place the GGUF weights (from the model release) into models/nano/
+# 1. Download the GGUF weights into models/nano/ — see llama-cpp-inference/README.md
+#    for the Hub repos and commands
 #    models/nano/lm.gguf       (language model)
 #    models/nano/mmproj.gguf   (vision projector)
 
