@@ -14,7 +14,7 @@
     "Reject visual token/embedding mismatch",
     "Bundled tokenizer for offline local construction"
   ],
-  "training_performed": false,
+  "training_performed": true,
   "inference_tested": true,
   "mirrored_large_files": {
     "assets/category_performance.png": {
@@ -30,5 +30,7 @@
       "sha256": "5b5ddf088789717db7d7bc25d8ddd88ee4bf678ff36dfe28ca5d760f79d1e3fa"
     }
   },
-  "validation_scope": "CPU smoke on one upstream image, online and cached offline; no benchmark reproduction"
+  "validation_scope": "CPU smoke on one upstream image, online and cached offline; no benchmark reproduction",
+  "release_weights_modified": false,
+  "training_scope": "One connector-only CPU smoke step on two synthetic images; adapted weights not published"
 }

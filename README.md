@@ -21,6 +21,6 @@ The CLI pins the weight revision, uses the local reviewed implementation, correc
 
 ## Scope & credit
 
-Maintained by Yifan Ouyang, based on [Tether AI Research / VisionPsy Nano](https://github.com/tether-ai-research/qvac-visionpsy-nano), Apache-2.0. This release adds deployment tools and bug fixes; it does not claim new training or reproduced accuracy. Original authors report ScienceQA 86.5, MMStar 47.6 and POPE F1 87.9; see the [source model card](https://huggingface.co/qvac/VisionPsy-Nano-460M).
+Maintained by Yifan Ouyang, based on [Tether AI Research / VisionPsy Nano](https://github.com/tether-ai-research/qvac-visionpsy-nano), Apache-2.0. This release adds deployment tools and bug fixes; released base weights are unchanged, and paper accuracy is not reproduced. Original authors report ScienceQA 86.5, MMStar 47.6 and POPE F1 87.9; see the [source model card](https://huggingface.co/qvac/VisionPsy-Nano-460M).
 
 English-first and single-image; hallucinations and counting errors remain possible. Original license and [provenance](docs/PROVENANCE.json) are preserved. Detailed upstream runtime guides remain in `hf-inference/`, `vllm-inference/` and `llama-cpp-inference/`.
