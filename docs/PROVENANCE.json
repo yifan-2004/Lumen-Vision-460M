@@ -8,10 +8,14 @@
   "weights_mirror": "yifanouyang/Lumen-Vision-460M",
   "changes": [
     "Chinese project guide",
-    "Branded entry point using mirror by default"
+    "Branded entry point using mirror by default",
+    "Folder inference and standalone JSONL/HTML reports",
+    "Processor duplicate keyword fix",
+    "Reject visual token/embedding mismatch",
+    "Bundled tokenizer for offline local construction"
   ],
   "training_performed": false,
-  "inference_tested": false,
+  "inference_tested": true,
   "mirrored_large_files": {
     "assets/category_performance.png": {
       "bytes": 462467,
@@ -25,5 +29,6 @@
       "bytes": 2029498200,
       "sha256": "5b5ddf088789717db7d7bc25d8ddd88ee4bf678ff36dfe28ca5d760f79d1e3fa"
     }
-  }
+  },
+  "validation_scope": "CPU smoke on one upstream image, online and cached offline; no benchmark reproduction"
 }

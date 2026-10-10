@@ -12,4 +12,4 @@ assert manifest["weights_mirror"] == "yifanouyang/Lumen-Vision-460M"
 assert manifest["mirrored_large_files"]["model.safetensors"]["bytes"] == 2029498200
 assert (root / "LICENSE.txt").is_file()
 assert (root / "docs/UPSTREAM_README.md").is_file()
-print(f"Publication checks passed; {len(files)} Python files parsed. Inference not tested.")
+print(f"Publication checks passed; {len(files)} Python files parsed. Model inference is separate from these static checks.")

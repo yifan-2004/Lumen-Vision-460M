@@ -1,0 +1,9 @@
+# Maintainer smoke-test versions; install in a virtual environment.
+torch==2.13.0
+torchvision==0.28.0
+transformers==5.13.0
+huggingface_hub>=1.23,<2
+Pillow>=10,<13
+safetensors>=0.4,<1
+einops>=0.7,<1
+numpy>=1.26,<3

@@ -79,7 +79,12 @@ class VisionLanguageModel(nn.Module):
         if image_token_id is None:
             image_token_id = self.tokenizer.convert_tokens_to_ids("<|image|>")
         mask = (input_ids == image_token_id).unsqueeze(-1)
-        flat = image_embd.view(-1, image_embd.size(-1)).to(token_embd.dtype)
+        flat = image_embd.reshape(-1, image_embd.size(-1)).to(token_embd.dtype)
+        if int(mask.sum()) != flat.shape[0]:
+            raise ValueError(
+                "Image token count does not match visual embeddings; "
+                "the prompt may have been truncated. Shorten the prompt or image tiling."
+            )
         token_embd.masked_scatter_(mask, flat)
         return token_embd
 

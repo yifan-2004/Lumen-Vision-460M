@@ -1,0 +1,8 @@
+{
+  "image": "hf-inference/data/img.jpg",
+  "prompt": "Describe this image.",
+  "model": "yifanouyang/Lumen-Vision-460M",
+  "revision": "d8e4540a883a5ce45cd26d36e42d4cad58ab5aa4",
+  "max_new_tokens": 24,
+  "answer": "The image depicts a polar bear resting on a large, flat rock. The bear is lying down with its body stretched out"
+}

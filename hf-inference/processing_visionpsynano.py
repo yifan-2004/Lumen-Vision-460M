@@ -193,13 +193,16 @@ class VisionPsyNanoProcessor(ProcessorMixin):
         if isinstance(full_prompt, list):
             full_prompt = full_prompt[0]
 
+        # Merge overrides before calling: duplicate keyword arguments used to
+        # raise TypeError for padding/truncation/max_length supplied by callers.
+        token_options = {
+            "padding": False,
+            "truncation": True,
+            "max_length": self.lm_max_position_embeddings,
+        }
+        token_options.update({k: v for k, v in kwargs.items() if k in token_options})
         encoded = self.tokenizer(
-            [full_prompt],
-            return_tensors=return_tensors,
-            padding=False,
-            truncation=True,
-            max_length=self.lm_max_position_embeddings,
-            **{k: v for k, v in kwargs.items() if k in ("padding", "truncation", "max_length")},
+            [full_prompt], return_tensors=return_tensors, **token_options
         )
 
         data = {
