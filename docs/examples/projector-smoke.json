@@ -1,0 +1,22 @@
+{
+  "purpose": "execution-only smoke on two synthetic solid-color images, not an accuracy evaluation",
+  "base_model": "yifanouyang/Lumen-Vision-460M",
+  "revision": "d8e4540a883a5ce45cd26d36e42d4cad58ab5aa4",
+  "device": "cpu",
+  "steps": 1,
+  "train_examples": 1,
+  "validation_examples": 1,
+  "image_max_size": 512,
+  "metrics": [
+    {
+      "step": 1,
+      "train_loss": 0.17548975348472595
+    },
+    {
+      "validation_loss": 0.5136652588844299,
+      "validation_answer_tokens": 2
+    }
+  ],
+  "saved_and_reloaded": true,
+  "adapted_weights_published": false
+}

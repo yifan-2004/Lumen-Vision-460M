@@ -1,5 +1,7 @@
 # Lumen Vision 460M
 
+![Model architecture and training workflow](assets/model-overview.svg)
+
 A compact single-image VLM with a practical local workflow: **folder → answers → JSONL + standalone HTML report**. English image questions and document experiments; about 460M parameters and 2.03 GB of unchanged weights.
 
 [Weights](https://huggingface.co/yifanouyang/Lumen-Vision-460M) · [Local install / offline guide](docs/LOCAL.md) · [Training scope](docs/TRAINING.md) · [Fixes & checks](docs/CHANGES.md)

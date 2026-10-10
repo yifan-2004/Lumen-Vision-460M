@@ -81,6 +81,9 @@ def load_runtime(args):
     model.apply_eager_profile()
     processor = VisionPsyNanoProcessor.from_pretrained(str(checkpoint), local_files_only=True)
     model.set_tokenizer(processor.tokenizer)
+    if getattr(args, 'projector', None):
+        from safetensors.torch import load_file
+        model.MP.load_state_dict(load_file(args.projector, device=device), strict=True)
     return torch, model, processor, device
 
 
@@ -95,6 +98,7 @@ def main(argv=None):
     parser.add_argument('--device', choices=['auto', 'cpu', 'cuda', 'mps'], default='auto')
     parser.add_argument('--max-new-tokens', type=int, default=64)
     parser.add_argument('--offline', action='store_true')
+    parser.add_argument('--projector', help='Optional locally trained projector.safetensors')
     parser.add_argument('--doctor', action='store_true', help='Check dependencies without downloading a model')
     parser.add_argument('--output', help='JSONL path; overwrites an existing file')
     parser.add_argument('--html', help='Self-contained report path')
@@ -124,7 +128,8 @@ def main(argv=None):
     try:
         for path in images:
             row = {'image': str(path), 'prompt': args.prompt, 'model': args.model,
-                   'revision': None if Path(args.model).is_dir() else args.revision, 'max_new_tokens': args.max_new_tokens}
+                   'revision': None if Path(args.model).is_dir() else args.revision, 'max_new_tokens': args.max_new_tokens,
+                   'projector': args.projector}
             try:
                 with Image.open(path) as original:
                     image = ImageOps.exif_transpose(original).convert('RGB')

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="930" viewBox="0 0 1800 930" role="img" aria-labelledby="title desc">
+<title id="title">Lumen Vision 460M</title><desc id="desc">Architecture of the original compact VLM and this edition’s connector-only local adaptation workflow.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#536579"/></marker></defs>
+<rect width="1800" height="930" fill="#ffffff"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#172b42}.title{font-size:36px;font-weight:700}.eyebrow{font-size:15px;letter-spacing:2px;fill:#657c92}.panel{font-size:20px;font-weight:700}.label{font-size:19px;font-weight:600}.small{font-size:15px;fill:#52687e}.foot{font-size:14px;fill:#64768a}.wire{fill:none;stroke:#536579;stroke-width:2}</style>
+<text x="55" y="40" class="eyebrow" text-anchor="start">MODEL OVERVIEW  /  REPRODUCIBLE LOCAL WORKFLOW</text>
+<text x="55" y="94" class="title" text-anchor="start">Lumen Vision 460M</text>
+<text x="55" y="127" class="small" text-anchor="start">Single-image visual question answering  •  SigLIP2 + pixel-shuffle connector + SmolLM2</text>
+<rect x="35" y="160" width="1730" height="395" rx="16" fill="#fbfcfe" stroke="#dfe6ee"/>
+<text x="60" y="194" class="panel" text-anchor="start">(a) Model architecture</text>
+<rect x="35" y="580" width="1730" height="260" rx="16" fill="#fbfcfe" stroke="#dfe6ee"/>
+<text x="60" y="614" class="panel" text-anchor="start">(b) Local adaptation recipe • independent of the original pretraining</text>
+<path d="M265,316 L300,316" class="wire"/>
+<polygon points="300.0,316.0 291.0,312.0 291.0,320.0" fill="#536579"/>
+<path d="M510,316 L545,316" class="wire"/>
+<polygon points="545.0,316.0 536.0,312.0 536.0,320.0" fill="#536579"/>
+<path d="M755,316 L790,316" class="wire"/>
+<polygon points="790.0,316.0 781.0,312.0 781.0,320.0" fill="#536579"/>
+<path d="M1000,316 L1035,316" class="wire"/>
+<polygon points="1035.0,316.0 1026.0,312.0 1026.0,320.0" fill="#536579"/>
+<path d="M1245,316 L1280,316" class="wire"/>
+<polygon points="1280.0,316.0 1271.0,312.0 1271.0,320.0" fill="#536579"/>
+<path d="M1490,316 L1525,316" class="wire"/>
+<polygon points="1525.0,316.0 1516.0,312.0 1516.0,320.0" fill="#536579"/>
+<path d="M265,458 L1145,458 L1145,387" class="wire"/>
+<polygon points="1145.0,387.0 1141.0,396.0 1149.0,396.0" fill="#536579"/>
+<text x="660" y="445" class="small" text-anchor="start">Text stream</text>
+<path d="M360,710 L400,710" class="wire"/>
+<polygon points="400.0,710.0 391.0,706.0 391.0,714.0" fill="#536579"/>
+<path d="M705,710 L745,710" class="wire"/>
+<polygon points="745.0,710.0 736.0,706.0 736.0,714.0" fill="#536579"/>
+<path d="M1050,710 L1090,710" class="wire"/>
+<polygon points="1090.0,710.0 1081.0,706.0 1081.0,714.0" fill="#536579"/>
+<path d="M1395,710 L1435,710" class="wire"/>
+<polygon points="1435.0,710.0 1426.0,706.0 1426.0,714.0" fill="#536579"/>
+<rect x="65" y="255" width="200" height="122" rx="10" fill="#eaf2fa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="165.0" y="284" class="label" text-anchor="middle">Input image</text>
+<text x="165.0" y="309" class="small" text-anchor="middle">Single image</text>
+<text x="165.0" y="334" class="small" text-anchor="middle">EXIF-corrected RGB</text>
+<rect x="310" y="255" width="200" height="122" rx="10" fill="#eaf2fa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="410.0" y="284" class="label" text-anchor="middle">Tiling / resize</text>
+<text x="410.0" y="309" class="small" text-anchor="middle">512 × 512 per tile</text>
+<text x="410.0" y="334" class="small" text-anchor="middle">Global + local views</text>
+<rect x="555" y="255" width="200" height="122" rx="10" fill="#eaf2fa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="655.0" y="284" class="label" text-anchor="middle">SigLIP2 encoder</text>
+<text x="655.0" y="309" class="small" text-anchor="middle">12 vision blocks</text>
+<text x="655.0" y="334" class="small" text-anchor="middle">Patch 16 • hidden 768</text>
+<rect x="800" y="255" width="200" height="122" rx="10" fill="#eeeafa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="900.0" y="284" class="label" text-anchor="middle">Pixel-shuffle + W</text>
+<text x="900.0" y="309" class="small" text-anchor="middle">1024 → 64 tokens / tile</text>
+<text x="900.0" y="334" class="small" text-anchor="middle">4 × 4 spatial reduction</text>
+<rect x="1045" y="255" width="200" height="122" rx="10" fill="#eaf2fa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="1145.0" y="284" class="label" text-anchor="middle">Visual-text sequence</text>
+<text x="1145.0" y="309" class="small" text-anchor="middle">Image token replacement</text>
+<text x="1145.0" y="334" class="small" text-anchor="middle">Prompt embeddings</text>
+<rect x="1290" y="255" width="200" height="122" rx="10" fill="#eaf2fa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="1390.0" y="284" class="label" text-anchor="middle">SmolLM2 decoder</text>
+<text x="1390.0" y="309" class="small" text-anchor="middle">32 causal blocks</text>
+<text x="1390.0" y="334" class="small" text-anchor="middle">Hidden 960 • 8K context</text>
+<rect x="1535" y="255" width="200" height="122" rx="10" fill="#eaf2fa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="1635.0" y="284" class="label" text-anchor="middle">Generated answer</text>
+<text x="1635.0" y="309" class="small" text-anchor="middle">Autoregressive decoding</text>
+<text x="1635.0" y="334" class="small" text-anchor="middle">Text response</text>
+<rect x="65" y="415" width="200" height="85" rx="10" fill="#eef5ed" stroke="#bacadd" stroke-width="1.5"/>
+<text x="165.0" y="444" class="label" text-anchor="middle">User question</text>
+<text x="165.0" y="469" class="small" text-anchor="middle">Tokenizer → embeddings</text>
+<rect x="65" y="655" width="295" height="112" rx="10" fill="#f1f4f7" stroke="#bacadd" stroke-width="1.5"/>
+<text x="212.5" y="684" class="label" text-anchor="middle">Train / held-out split</text>
+<text x="212.5" y="709" class="small" text-anchor="middle">Distinct image paths + IDs</text>
+<rect x="410" y="655" width="295" height="112" rx="10" fill="#f1f4f7" stroke="#bacadd" stroke-width="1.5"/>
+<text x="557.5" y="684" class="label" text-anchor="middle">Frozen backbones</text>
+<text x="557.5" y="709" class="small" text-anchor="middle">Vision encoder + decoder</text>
+<rect x="755" y="655" width="295" height="112" rx="10" fill="#eeeafa" stroke="#bacadd" stroke-width="1.5"/>
+<text x="902.5" y="684" class="label" text-anchor="middle">Train connector W</text>
+<text x="902.5" y="709" class="small" text-anchor="middle">AdamW • answer-only loss</text>
+<rect x="1100" y="655" width="295" height="112" rx="10" fill="#f1f4f7" stroke="#bacadd" stroke-width="1.5"/>
+<text x="1247.5" y="684" class="label" text-anchor="middle">Validate + export</text>
+<text x="1247.5" y="709" class="small" text-anchor="middle">Loss / token • safetensors</text>
+<rect x="1445" y="655" width="295" height="112" rx="10" fill="#f1f4f7" stroke="#bacadd" stroke-width="1.5"/>
+<text x="1592.5" y="684" class="label" text-anchor="middle">Load local connector</text>
+<text x="1592.5" y="709" class="small" text-anchor="middle">Base + projector checkpoint</text>
+<text x="555" y="410" class="small" text-anchor="start">64 tokens per tile; total depends on tiling.</text>
+<text x="1290" y="410" class="small" text-anchor="start">15 attention / 5 KV heads</text>
+<text x="65" y="808" class="small" text-anchor="start">Local preset: 512-pixel image limit • batch 1 • ≤1024 tokens • frozen vision and language weights</text>
+<text x="55" y="883" class="foot" text-anchor="start">Architecture: unchanged base model. Training: freeze both backbones, adapt connector only; saved connector requires the base checkpoint.</text>
+<text x="55" y="908" class="foot" text-anchor="start">Original diagram by Yifan Ouyang. Base architecture attribution and training scope: docs/TRAINING.md.</text>
+</svg>
