@@ -34,4 +34,4 @@ English-first, single-image input. Answers can contain hallucinations or countin
 
 ## License
 
-[Apache-2.0](LICENSE.txt) · [Source](https://github.com/tether-ai-research/qvac-visionpsy-nano) · [Model reference](https://huggingface.co/qvac/VisionPsy-Nano-460M)
+[Apache-2.0](LICENSE.txt)
