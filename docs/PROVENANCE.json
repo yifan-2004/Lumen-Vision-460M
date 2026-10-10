@@ -1,0 +1,29 @@
+{
+  "code_source": "https://github.com/tether-ai-research/qvac-visionpsy-nano",
+  "code_commit": "4effbda7afed28688498147759f62cd487e90944",
+  "github_stars_at_selection": 27,
+  "checked_date": "2026-10-09",
+  "weights_source": "qvac/VisionPsy-Nano-460M",
+  "weights_revision": "a779cb695f7627c36ded60a82a8c3cc73f03fa24",
+  "weights_mirror": "yifanouyang/Lumen-Vision-460M",
+  "changes": [
+    "Chinese project guide",
+    "Branded entry point using mirror by default"
+  ],
+  "training_performed": false,
+  "inference_tested": false,
+  "mirrored_large_files": {
+    "assets/category_performance.png": {
+      "bytes": 462467,
+      "sha256": "08e875bd4a9c7ff23f832660053d7cf079b499892e33e2d5a8ff446ef97058de"
+    },
+    "assets/category_summary.png": {
+      "bytes": 233591,
+      "sha256": "02d86a9d7543eaeb99bba876e65ef0e9f1ff90de52a5b02c066d364314e24ae3"
+    },
+    "model.safetensors": {
+      "bytes": 2029498200,
+      "sha256": "5b5ddf088789717db7d7bc25d8ddd88ee4bf678ff36dfe28ca5d760f79d1e3fa"
+    }
+  }
+}
