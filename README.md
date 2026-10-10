@@ -2,13 +2,13 @@
 
 ![Model architecture and training workflow](assets/model-overview.svg)
 
-A compact single-image VLM with a practical local workflow: **folder → answers → JSONL + standalone HTML report**. English image questions and document experiments; about 460M parameters and 2.03 GB of unchanged weights.
+A compact English single-image VLM for image questions and document experiments. About **460M parameters**, with a practical local workflow: **folder → answers → JSONL + HTML report**.
 
-[Weights](https://huggingface.co/yifanouyang/Lumen-Vision-460M) · [Local install / offline guide](docs/LOCAL.md) · [Training scope](docs/TRAINING.md) · [Fixes & checks](docs/CHANGES.md)
+[Weights](https://huggingface.co/yifanouyang/Lumen-Vision-460M) · [Local / offline setup](docs/LOCAL.md) · [Training](docs/TRAINING.md) · [Changes](docs/CHANGES.md)
 
-## Run locally
+## Quick start
 
-Python 3.11+, a virtual environment, CPU or CUDA:
+Python 3.11+, CPU or CUDA. Run from the repository root:
 
 ```bash
 pip install -r requirements.txt
@@ -17,10 +17,21 @@ python scripts/ask_image.py --image photo.jpg --device cpu
 python scripts/ask_image.py --folder photos --output runs/results.jsonl --html runs/report.html
 ```
 
-The CLI pins the weight revision, uses the local reviewed implementation, corrects image orientation, and rejects truncated image-token mismatches. No paid API is required. Download the complete checkpoint for offline use; see the short [guide](docs/LOCAL.md).
+The CLI pins the checkpoint revision, handles image orientation, and checks image-token alignment. Cache the complete checkpoint before using `--offline`. No paid API is required.
 
-## Scope & credit
+## Train a connector
 
-Maintained by Yifan Ouyang, based on [Tether AI Research / VisionPsy Nano](https://github.com/tether-ai-research/qvac-visionpsy-nano), Apache-2.0. This release adds deployment tools and bug fixes; released base weights are unchanged, and paper accuracy is not reproduced. Original authors report ScienceQA 86.5, MMStar 47.6 and POPE F1 87.9; see the [source model card](https://huggingface.co/qvac/VisionPsy-Nano-460M).
+Prepare image/question/answer JSONL files with separate training and validation scenes:
 
-English-first and single-image; hallucinations and counting errors remain possible. Original license and [provenance](docs/PROVENANCE.json) are preserved. Detailed upstream runtime guides remain in `hf-inference/`, `vllm-inference/` and `llama-cpp-inference/`.
+```bash
+python scripts/train_projector.py --train train.jsonl --validation validation.jsonl --output runs/connector --steps 100 --device cuda
+python scripts/ask_image.py --image photo.jpg --projector runs/connector/projector.safetensors --device cuda
+```
+
+Both backbones stay frozen; only the visual connector is updated. See the [recipe](docs/TRAINING.md) for data format, settings and saved artifacts. CPU inference and a one-step CPU connector smoke run were checked; CUDA training is unverified. Released base weights are unchanged.
+
+English-first, single-image input. Answers can contain hallucinations or counting errors.
+
+## License
+
+[Apache-2.0](LICENSE.txt) · [Source](https://github.com/tether-ai-research/qvac-visionpsy-nano) · [Model reference](https://huggingface.co/qvac/VisionPsy-Nano-460M)

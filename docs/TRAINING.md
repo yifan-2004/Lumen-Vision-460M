@@ -2,10 +2,6 @@
 
 ![Architecture and local adaptation](../assets/model-overview.svg)
 
-## Original model training (reported by the original authors)
-
-The released base starts from nanoVLM-460M-8k. Its published post-training sequence is broad SFT, capability-focused SFT, weakness-targeted specialists, TIES weight merging, then preference optimization with replay. Early stages develop coverage; later stages focus on errors and response reliability. This repository does not reproduce those stages or infer unpublished hyperparameters. See [Tether AI Research’s training description](https://huggingface.co/blog/qvac/visionpsy#how-we-trained-it) and [source model card](https://huggingface.co/qvac/VisionPsy-Nano-460M).
-
 ## Runnable local recipe: connector-only adaptation
 
 1. Install [local requirements](LOCAL.md). Use images and answers whose training use you have permission for. Split by document/scene before formatting: this script rejects repeated IDs, image paths and byte-identical images across splits; it cannot detect all near duplicates.
@@ -46,4 +42,6 @@ The original forward expects already shifted labels; the trainer constructs thos
 
 ## Validation scope
 
-A real 460M CPU run completed one connector update and held-out validation on two synthetic solid-color images, then saved and reloaded the connector for inference. This validates the execution path, not useful task learning or original training reproduction. No adapted weights from that toy run are published as a new model. Use the source dataset licenses when reproducing original training; they are separate from the model’s Apache-2.0 license.
+A real 460M CPU run completed one connector update and held-out validation on two synthetic solid-color images, then saved and reloaded the connector for inference. This validates the execution path, not useful task learning. No adapted weights from that toy run are published as a new model. Training data has its own licensing terms.
+
+[Training reference](https://huggingface.co/blog/qvac/visionpsy#how-we-trained-it) · [Model reference](https://huggingface.co/qvac/VisionPsy-Nano-460M)
